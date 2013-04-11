@@ -1,0 +1,257 @@
+/*
+Name: Virtual Kalimba
+Description: A Web Audio experiment by Middle Ear Media.
+Author: Obadiah Metivier
+*/
+
+/* Typography */
+@font-face {
+    font-family: 'FFFTusjBold';
+    src: url('assets/fonts/FFF_Tusj-webfont.eot');
+    src: url('assets/fonts/FFF_Tusj-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/FFF_Tusj-webfont.woff') format('woff'),
+         url('assets/fonts/FFF_Tusj-webfont.ttf') format('truetype'),
+         url('assets/fonts/FFF_Tusj-webfont.svg#FFFTusjBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+h1, h2, h3 {
+}
+h1 {
+    color: #6ACC28;
+    font-family: 'FFFTusjBold',Arial,sans-serif;
+    font-size: 3.5em;
+    line-height: 0.5;
+	margin: 20px auto;
+	text-transform: uppercase;
+	width: 570px;
+}
+h3 {
+	color:#666;
+}
+a {
+color:#6ACC28;
+text-decoration:none;
+}
+a:hover {
+color:#f66;
+text-decoration:underline;
+}
+.small-text {
+	font-size:.8em;
+}
+.red {
+    color: #FF6666;
+}
+.green {
+    color: #6ACC28;
+}
+.active {
+    color: #6ACC28;
+}
+#credits {
+text-align: center;
+width:100%;
+}
+
+/* Layout */
+* {
+   -moz-box-sizing:border-box;   /* Firefox 1, probably can drop this */
+   -webkit-box-sizing:border-box;   /* Safari 3-4, also probably droppable */
+    box-sizing:border-box;   /* Everything else */
+}
+body {
+	background-color:#111;
+	background-image: url("assets/images/background.jpg");
+	color:#bbb;
+	font-family:Arial;
+}
+#page-wrap {
+	width: 600px;
+	margin: 50px auto;
+}
+
+/* Arrangement Menu */
+#ArrangementNav	{
+    margin: 0 auto 10px;
+    overflow: hidden;
+    padding: 5px;
+    width: 225px;	
+}
+#ArrangementNav li { 
+	display: inline;
+}
+#ArrangementNav li a { 
+	display: block; 
+	width: 71px; 
+	height: 45px; 
+	text-indent: -9999px;
+	background: url(assets/images/arrangement-icons.png); 
+	float: left;
+	border: none; 
+	padding: 0;
+}
+#ArrangementNav li a#ascending-button		{ background-position: 0px 0px; }
+#page-wrap #ArrangementNav li.activeCatButton a#ascending-button { background-position: -71px 0px; }
+#ArrangementNav li a#ascending-button:hover { background-position: -71px 0px; }
+#ArrangementNav a#alternating-button			{ background-position: 0px -45px; }
+#page-wrap #ArrangementNav li.activeCatButton a#alternating-button { background-position: -71px -45px; }	
+#ArrangementNav li a#alternating-button:hover { background-position: -71px -45px; }	
+#ArrangementNav a#descending-button			{ background-position: 0px -90px; }
+#page-wrap #ArrangementNav li.activeCatButton a#descending-button { background-position: -71px -90px; }
+#ArrangementNav li a#descending-button:hover { background-position: -71px -90px; }
+
+
+/* Kits */
+#kits {
+	padding:0;
+	margin:0;
+	width:800px;
+	background:#ff6666;
+}
+#kits ul {
+	padding:0;
+	margin:0;
+}
+
+#kits li {
+	float:left;
+	width:100px;
+	height:50px;
+	padding:10px;
+  white-space:word-break;
+  overflow:hidden;
+
+	font-size:20px;
+	text-align:center;
+	border:1px solid #1a1a1a;
+	border-radius:10px;
+	margin-right:10px;
+	margin-bottom:10px;
+	font-family:"BebasNeueRegular",times,sans-serif;
+	text-transform:uppercase;
+	background:#fff;
+	box-shadow:0 0 10px #ccc inset, 0 0 10px #ccc;
+	list-style:none;
+}
+
+#kits li.active {
+	background:#dfd;
+}
+
+/* Kalimba */
+.box {
+	background-color:#C07D2C;
+	background-image:url("assets/images/box.jpg");
+	border-radius:8px;
+	border-style:solid;
+	border-width:2px;
+	border-color:#602A06;
+	box-shadow:2px 2px 4px #3A1903;
+	padding:20px 45px 45px;
+	height: 380px;
+    width: 600px;
+}
+.tine {
+	background-color:#cfcfcf;
+	background-image:url("assets/images/tine.jpg");
+    background-position: center bottom;
+	border-radius:3px;
+	border:1px solid #999;
+	box-shadow:2px 4px 6px #744C07;
+	cursor:pointer;
+	float:left;
+	width:30px;
+	height:300px;
+	margin-left:15px;
+}
+.backstop {
+	background-color:#97552C;
+	background-image:url("assets/images/backstop.jpg");
+	border-radius:3px;
+	box-shadow:1px 4px 7px #3A1903;
+	height:50px;	
+	width:510px;
+	margin: 0px auto -35px;
+}
+.zbracket {
+    background-color: #aaa;
+    background-image: url("assets/images/tine.jpg");
+    background-position: center -397px;
+    border-radius: 1px 1px 1px 1px;
+    box-shadow: 0 1px 5px #111;
+    height: 4px;
+    margin: 10px 0 -30px -10px;
+    opacity: 0.9;
+    position: absolute;
+    width: 530px;
+}
+.bridge {
+    background-color: #666;
+    background-image: url("assets/images/tine.jpg");
+    background-position: center -395px;
+    border-radius: 1px 1px 1px 1px;
+    box-shadow: 0 1px 5px #111;
+    height: 4px;
+    margin: 50px 0 -55px -10px;
+    width: 530px;
+}
+#a_tine1, #b_tine1 {
+	background-color:#cfcfcf;
+	height:300px
+}
+#a_tine2, #b_tine2 {
+	height:287px
+}
+#a_tine3, #b_tine3 {
+	background-color:#cfcfcf;
+	height:274px
+}
+#a_tine4, #b_tine4 {
+	background-color:#cfcfcf;
+	height:261px
+}
+#a_tine5, #b_tine5 {
+	background-color:#cfcfcf;
+	height:248px
+}
+#a_tine6, #b_tine6 {
+	height:235px
+}
+#a_tine7, #b_tine7 {
+	background-color:#cfcfcf;
+	height:222px
+}
+#a_tine8, #b_tine8 {
+	background-color:#cfcfcf;
+	height:209px
+}
+#a_tine9, #b_tine9 {
+	height:196px
+}
+#a_tine10, #b_tine10 {
+	background-color:#cfcfcf;
+	height:183px
+}
+#a_tine11, #b_tine11 {
+	background-color:#cfcfcf;
+	height:170px
+}
+#a_tine12, #b_tine12 {
+	background-color:#cfcfcf;
+	height:157px
+}
+#a_tine13, #b_tine13 {
+	height:144px
+}
+#a_tine14, #b_tine14 {
+	background-color:#cfcfcf;
+	height:131px
+}
+#a_tine15, #b_tine15 {
+	background-color:#cfcfcf;
+	height:118px
+}
+#a_tine16, #b_tine16 {
+	height:105px
+}

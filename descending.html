@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>Virtual Kalimba - A Web Audio experiment by Middle Ear Media.</title>
+<meta charset="UTF-8">
+<meta name="description" content="A Web Audio experiment by Middle Ear Media."/>
+<meta name="keywords" content="kalimba, virtual kalimba, mbira, thumb piano, html5, javascript, jquery, obadiah metivier, obadiah, metivier, middle ear media, middle ear, interactive"/>
+<meta name="author" content="Obadiah Metivier"/>
+<link rel="stylesheet" href="virtualkalimba.css">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+</head>
+<body>
+<div id="page-wrap">
+	<h1>Virtual Kalimba</h1>
+		<ul id="ArrangementNav">
+			<li><a id="ascending-button" href="ascending.html" title="Ascending">Ascending</a></li>
+			<li><a id="alternating-button" href="index.html" title="Alternating">Alternating</a></li>
+			<li class="activeCatButton"><a id="descending-button" title="Descending">Descending</a></li>
+		</ul>
+	<div id="bank-a" class="box">  
+		<div class="backstop"> </div>
+		<div class="bridge"> </div>	
+		<div id="a_tine15" class="tine"> </div>
+		<div id="a_tine14" class="tine"> </div>
+		<div id="a_tine12" class="tine"> </div>
+		<div id="a_tine11" class="tine"> </div>
+		<div id="a_tine10" class="tine"> </div>
+		<div id="a_tine8" class="tine"> </div>
+		<div id="a_tine7" class="tine"> </div>
+		<div id="a_tine5" class="tine"> </div>
+		<div id="a_tine4" class="tine"> </div>
+		<div id="a_tine3" class="tine"> </div>
+		<div id="a_tine1" class="tine"> </div>
+		<div class="zbracket"> </div>		
+	</div>
+	<div id="credits">
+		<p><a href="http://middleearmedia.com/apps/virtual-kalimba/" title="Learn more about Virtual Kalimba">Virtual Kalimba</a> is a Web Audio experiment by <a href="http://middleearmedia.com/" title="Middle Ear Media">Middle Ear Media</a>.</p>
+		<p class="small-text"><span class="red">* </span>Keep in mind you need Chrome or Safari 6 for this to work!</p>
+	</div>
+</div> 
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js" charset="utf-8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+<script src="kalimba.js"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-6856016-46']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
