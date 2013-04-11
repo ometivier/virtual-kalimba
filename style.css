@@ -1,0 +1,328 @@
+/*
+ * Name: Kalimba
+ * Description: A Web Audio experiment by Middle Ear Media.
+ * Author: Obadiah Metivier
+ * Version: 1.5
+*/
+
+/* Typography */
+@font-face {
+    font-family: 'FFFTusjBold';
+    src: url('assets/fonts/FFF_Tusj-webfont.eot');
+    src: url('assets/fonts/FFF_Tusj-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/FFF_Tusj-webfont.woff') format('woff'),
+         url('assets/fonts/FFF_Tusj-webfont.ttf') format('truetype'),
+         url('assets/fonts/FFF_Tusj-webfont.svg#FFFTusjBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+h1 {
+    color: #6ACC28;
+    font-family: 'FFFTusjBold',Arial,sans-serif;
+    font-size: 3.5rem;
+    line-height: 0.5;
+  margin: 20px auto;
+	text-transform: uppercase;
+	width: 570px;
+}
+h2 {
+	color: #6ACC28;
+}
+#controls h2 {
+	text-align: center;
+}
+h3 {
+	color: #aaa;
+}
+a {
+	color: #6ACC28;
+	text-decoration: none;
+}
+a:hover {
+	color: #f66;
+	text-decoration:none;
+}
+.small-text {
+	font-size:.8rem;
+}
+.red {
+    color: #f66;
+}
+.green {
+    color: #6ACC28;
+}
+.active {
+    color: #6ACC28;
+}
+#credits {
+	text-align: center;
+	width: 100%;
+}
+
+/* Layout */
+* {
+    box-sizing:border-box;   /* Everything else */
+}
+html {
+	overflow-y: scroll; /* force scrollbar to eliminate horizontal jump */
+}
+body {
+	background-color: #111;
+	background-image: url('assets/images/background.jpg');
+	color: #bbb;
+	/* Helvetica/Arial-based sans serif stack */
+	font-family: Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+}
+#page-wrap {
+	margin: 50px auto;
+	width: 600px;
+}
+
+/* Arrangement Menu */
+#ArrangementNav	{
+    margin: 0 auto 10px;
+    overflow: hidden;
+    padding: 5px;
+    width: 225px;	
+}
+#ArrangementNav li { 
+	display: inline;
+}
+#ArrangementNav li input {
+	background: url('assets/images/arrangement-icons.png'); 
+	border: none; 
+	cursor: pointer;
+	display: block; 
+	float: left;
+	height: 45px; 
+	padding: 0;
+	text-indent: -9999px;
+	width: 71px; 
+}
+#ArrangementNav li input#toggleAscending								{ background-position: 0px 0px; }
+#page-wrap #ArrangementNav li.activeCatButton input#toggleAscending 		{ background-position: -71px 0px; }
+#ArrangementNav li input#toggleAscending:hover 							{ background-position: -71px 0px; }
+#ArrangementNav input#toggleAlternating								{ background-position: 0px -45px; }
+#page-wrap #ArrangementNav li.activeCatButton input#toggleAlternating 	{ background-position: -71px -45px; }	
+#ArrangementNav li input#toggleAlternating:hover 						{ background-position: -71px -45px; }	
+#ArrangementNav input#toggleDescending								{ background-position: 0px -90px; }
+#page-wrap #ArrangementNav li.activeCatButton input#toggleDescending 	{ background-position: -71px -90px; }
+#ArrangementNav li input#toggleDescending:hover 						{ background-position: -71px -90px; }
+
+/* Kalimba */
+.box {
+	background-color: #C07D2C;
+	background-image: url('assets/images/box.jpg');
+	border-color: #602A06;
+	border-radius: 8px;
+	border-style: solid;
+	border-width: 2px;
+	box-shadow: 2px 2px 4px #3A1903;
+	height: 380px;
+	padding: 20px 45px 45px;
+    width: 600px;
+}
+.tine {
+	background-color: #cfcfcf;
+	background-image: url('assets/images/tine.jpg');
+    background-position: center bottom;
+	border: 1px solid #999;
+	border-radius: 3px;
+	box-shadow: 2px 4px 6px #744C07;
+	cursor: pointer;
+	float: left;
+	height: 300px;
+	margin-left: 15px;
+	width: 30px;
+}
+.backstop {
+	background-color: #97552C;
+	background-image: url('assets/images/backstop.jpg');
+	border-radius: 3px;
+	box-shadow: 1px 4px 7px #3A1903;
+	height: 50px;	
+	margin: 0px auto -35px;
+	width: 510px;
+}
+.zbracket {
+    background-color: #aaa;
+    background-image: url('assets/images/tine.jpg');
+    background-position: center -397px;
+    border-radius: 1px 1px 1px 1px;
+    box-shadow: 0 1px 5px #111;
+    height: 4px;
+    margin: 10px 0 -30px -10px;
+    opacity: 0.9;
+    position: absolute;
+    width: 530px;
+}
+.bridge {
+    background-color: #666;
+    background-image: url('assets/images/tine.jpg');
+    background-position: center -395px;
+    border-radius: 1px 1px 1px 1px;
+    box-shadow: 0 1px 5px #111;
+    height: 4px;
+    margin: 50px 0 -55px -10px;
+    width: 530px;
+}
+#a_tine1, #b_tine1, #c_tine1 {
+	background-color: #cfcfcf;
+	height: 300px;
+}
+#a_tine2, #b_tine2, #c_tine2 {
+	height: 287px;
+}
+#a_tine3, #b_tine3, #c_tine3 {
+	background-color: #cfcfcf;
+	height: 274px;
+}
+#a_tine4, #b_tine4, #c_tine4 {
+	background-color: #cfcfcf;
+	height: 261px;
+}
+#a_tine5, #b_tine5, #c_tine5 {
+	background-color: #cfcfcf;
+	height: 248px;
+}
+#a_tine6, #b_tine6, #c_tine6 {
+	height: 235px;
+}
+#a_tine7, #b_tine7, #c_tine7 {
+	background-color: #cfcfcf;
+	height: 222px;
+}
+#a_tine8, #b_tine8, #c_tine8 {
+	background-color: #cfcfcf;
+	height: 209px;
+}
+#a_tine9, #b_tine9, #c_tine9 {
+	height: 196px;
+}
+#a_tine10, #b_tine10, #c_tine10 {
+	background-color: #cfcfcf;
+	height: 183px;
+}
+#a_tine11, #b_tine11, #c_tine11 {
+	background-color:#cfcfcf;
+	height:170px;
+}
+#a_tine12, #b_tine12, #c_tine12 {
+	background-color:#cfcfcf;
+	height:157px;
+}
+#a_tine13, #b_tine13, #c_tine13 {
+	height: 144px;
+}
+#a_tine14, #b_tine14, #c_tine14 {
+	background-color: #cfcfcf;
+	height: 131px;
+}
+#a_tine15, #b_tine15, #c_tine15 {
+	background-color:#cfcfcf;
+	height:118px;
+}
+#a_tine16, #b_tine16, #c_tine16 {
+	height: 105px;
+}
+
+/* Options Menu */
+#OptionsNav	{
+	margin-top: 8px;
+}
+#OptionsNav li { 
+	display: inline;
+}
+#OptionsNav li a {
+    border: 1px solid #222;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px #000;
+    display: inline-block;
+    padding: 16px 0;
+    text-align: center;
+    width: 30%;
+}
+#OptionsNav li a:hover {
+    border: 1px solid #6ACC28;
+}
+#OptionsNav li input {
+	background: transparent;
+    border: 1px solid #222;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px #000;
+	color: #6ACC28;
+	cursor: pointer;
+    display: inline-block;
+    padding: 16px 0;
+    text-align: center;
+    width: 30%;
+}
+#OptionsNav li input:hover {
+	color: #f66;
+}
+#OptionsNav li input:active {
+    border: 1px solid #6ACC28;
+	color: #f66;
+}
+
+/* Control Panel */
+.panel {
+    border: 1px solid #222;
+    border-radius: 8px;
+	box-shadow: 0 2px 18px #000;
+    color: #888;
+	margin: 8px 0;
+    padding: 2px 16px;
+}
+.panel strong {
+	color: #ddd;
+}
+
+/* Control Inputs */
+input[type="range"] {
+   -webkit-appearance: none;
+    background-color: #6ACC28;
+    border: 9px solid #0f0f0f;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0 1px 5px #444;
+    height: 20px;
+    margin: 0 12px 10px;
+    padding: 0 3px;
+    width: 250px;
+}
+input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	background-color: #444;
+	width: 16px;
+	height: 16px;
+	border-radius: 16px;
+	border: 2px solid #6ACC28;
+	vertical-align: middle;
+}
+.label {
+	display: inline-block;
+}
+.label span {
+    color: #888;
+    display: block;
+	margin-bottom: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: top;
+}
+input[type="checkbox"] {
+	display:none;
+}
+input[type="checkbox"] + label span {
+	background: url('assets/images/check_radio_sheet.png') left top no-repeat;
+	cursor: pointer;
+	display: inline-block;
+	height: 19px;
+	margin: -1px 4px 0 0;
+	vertical-align: middle;
+	width: 19px;
+}
+input[type="checkbox"]:checked + label span {
+	background: url('assets/images/check_radio_sheet.png') -19px top no-repeat;
+}
