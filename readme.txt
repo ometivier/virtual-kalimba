@@ -14,4 +14,8 @@ This web app allows you to play a virtual kalimba in your browser. It uses the W
 == Changelog ==
 
 = 1.0 =
+<<<<<<< HEAD
 * Finished coding. 03/01/2013.
+=======
+* Finished coding. 03/01/2013.
+>>>>>>> 39cef9866827b6ab9113097022b0e1f71a41d0c8

@@ -68,4 +68,8 @@ $(document).keypress(function(e){
   if(e.charCode == 103){
     // Do your thing
   }
+<<<<<<< HEAD
 })
+=======
+})
+>>>>>>> 39cef9866827b6ab9113097022b0e1f71a41d0c8

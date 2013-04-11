@@ -22,7 +22,11 @@ h1 {
     font-family: 'FFFTusjBold',Arial,sans-serif;
     font-size: 3.5em;
     line-height: 0.5;
+<<<<<<< HEAD
 	margin: 20px auto;
+=======
+  margin: 20px auto;
+>>>>>>> 39cef9866827b6ab9113097022b0e1f71a41d0c8
 	text-transform: uppercase;
 	width: 570px;
 }
@@ -213,4 +217,8 @@ body {
 }
 #a_tine16, #b_tine16 {
 	height:105px
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 39cef9866827b6ab9113097022b0e1f71a41d0c8
