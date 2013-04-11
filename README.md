@@ -1,7 +1,4 @@
-virtual-kalimba
-===============
-
-Virtual Kalimba is a Web Audio experiment by Middle Ear Media.
+=== Virtual Kalimba - A Web Audio experiment by Middle Ear Media. ===
 
 Author: Obadiah Metivier
 Author URI: http://middleearmedia.com/
