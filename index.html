@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> 
+		<meta charset="UTF-8">
+		<meta name="description" content="Virtual Kalimba is a Web Audio experiment by Middle Ear Media."/>
+		<meta name="keywords" content="kalimba, virtual kalimba, mbira, thumb piano, html5, javascript, jquery, web audio api, obadiah metivier, obadiah, metivier, middle ear media, middle ear, interactive"/>
+		<meta name="author" content="Obadiah Metivier"/>
+		<title>Virtual Kalimba - A Web Audio experiment by Middle Ear Media.</title>
+		<link rel="stylesheet" href="style.css">
+		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+	</head>
+	<body>
+		<div id="page-wrap">
+			<h1>Virtual Kalimba</h1>
+			<ul id="ArrangementNav">
+				<li><input type="submit" name="toggleAscending" value="Ascending" id="toggleAscending" title="Ascending" /></li>
+				<li><input type="submit" name="toggleAlternating" value="Alternating" id="toggleAlternating" title="Alternating" /></li>
+				<li><input type="submit" name="toggleDescending" value="Descending" id="toggleDescending" title="Descending" /></li>
+			</ul>
+		<div id="ascending" class="box">  
+			<div class="backstop"> </div>
+			<div class="bridge"> </div>	
+			<div id="a_tine1" class="tine"> </div>
+			<div id="a_tine3" class="tine"> </div>
+			<div id="a_tine4" class="tine"> </div>
+			<div id="a_tine5" class="tine"> </div>
+			<div id="a_tine7" class="tine"> </div>
+			<div id="a_tine8" class="tine"> </div>
+			<div id="a_tine10" class="tine"> </div>
+			<div id="a_tine11" class="tine"> </div>
+			<div id="a_tine12" class="tine"> </div>
+			<div id="a_tine14" class="tine"> </div>
+			<div id="a_tine15" class="tine"> </div>
+			<div class="zbracket"> </div>		
+		</div>
+		<div id="alternating" class="box">  
+			<div class="backstop"> </div>
+			<div class="bridge"> </div>	
+			<div id="b_tine14" class="tine"> </div>
+			<div id="b_tine11" class="tine"> </div>
+			<div id="b_tine8" class="tine"> </div>
+			<div id="b_tine5" class="tine"> </div>
+			<div id="b_tine3" class="tine"> </div>
+			<div id="b_tine1" class="tine"> </div>
+			<div id="b_tine4" class="tine"> </div>
+			<div id="b_tine7" class="tine"> </div>
+			<div id="b_tine10" class="tine"> </div>
+			<div id="b_tine12" class="tine"> </div>
+			<div id="b_tine15" class="tine"> </div>
+			<div class="zbracket"> </div>		
+		</div>
+		<div id="descending" class="box">  
+			<div class="backstop"> </div>
+			<div class="bridge"> </div>	
+			<div id="c_tine15" class="tine"> </div>
+			<div id="c_tine14" class="tine"> </div>
+			<div id="c_tine12" class="tine"> </div>
+			<div id="c_tine11" class="tine"> </div>
+			<div id="c_tine10" class="tine"> </div>
+			<div id="c_tine8" class="tine"> </div>
+			<div id="c_tine7" class="tine"> </div>
+			<div id="c_tine5" class="tine"> </div>
+			<div id="c_tine4" class="tine"> </div>
+			<div id="c_tine3" class="tine"> </div>
+			<div id="c_tine1" class="tine"> </div>
+			<div class="zbracket"> </div>		
+		</div>
+		<ul id="OptionsNav">
+			<li><input type="submit" name="toggleControls" value="Control Panel" id="toggleControls" title="Toggle Control Panel" /></li>
+			<li><input type="submit" name="toggleShortcuts" value="Keyboard Shortcuts" id="toggleShortcuts" title="Toggle Keyboard Shortcuts" /></li>
+			<li><input type="submit" name="toggleTips" value="Tips &amp; Tricks" id="toggleTips" title="Toggle Tips &amp; Tricks" /></li>
+		</ul>	
+		<div id="controls" class="panel">		
+			<p class="label"><span>Volume</span> <input id="volume-1" type="range" min="0" max="1" step="0.01" value="0.5"/></p>
+			<p class="label"><span>Pan</span> <input id="pan-1" type="range" min="-45" max="45" value="0" onchange="pan(this);"></p>
+	  		<p class="label"><span>Lowpass Frequency</span> <input id="filter-1" type="range" min="10" max="210" step="1" value="110"/></p>
+			<p class="label"><span>Lowpass Resonance</span> <input id="quality-1" type="range" min="0" max="10" step="0.1" value="5"/></p>
+			<p class="label"><span>Highpass Frequency</span> <input id="filter-2" type="range" min="10" max="1760" step="20" value="880"/></p>	
+			<p class="label"><span>Highpass Resonance</span> <input id="quality-2" type="range" min="0" max="10" step="0.1" value="5"/></p>
+		</div>
+		<div id="shortcuts" class="panel">
+			<h2>Keyboard Shortcuts</h2>	
+			<p>Keyboard shortcuts are keys that can be pressed while playing the Kalimba to modify the sound in real time. They're laid out in a logical grid to match the control panel. Each control has three shortcuts associated with it.</p>
+			<h3>Shortcut Keys for Volume are <strong>1</strong>, <strong>2</strong>, and <strong>3</strong></h3>
+			<ul>
+				<li>Press [<strong>1</strong>] to set the volume to 20%</li>
+				<li>Press [<strong>2</strong>] to set the volume to 50% <em class="red">(default)</em></li>
+				<li>Press [<strong>3</strong>] to set the volume to 80%</li>
+			</ul>
+			<h3>Shortcut Keys for Pan are <strong>4</strong>, <strong>5</strong>, and <strong>6</strong></h3>
+			<ul>
+				<li>Press [<strong>4</strong>] to set the pan slightly to the left</li>
+				<li>Press [<strong>5</strong>] to set the pan to center <em class="red">(default)</em></li>
+				<li>Press [<strong>6</strong>] to set the pan slightly to the right</li>
+			</ul>
+			<h3>Shortcut Keys for Lowpass Frequency are <strong>Q</strong>, <strong>W</strong>, and <strong>E</strong></h3>
+			<ul>
+				<li>Press [<strong>Q</strong>] to set the lowpass frequency to cut off above 10 Hz</li>
+				<li>Press [<strong>W</strong>] to set the lowpass frequency to cut off above 110 Hz <em class="red">(default)</em></li>
+				<li>Press [<strong>E</strong>] to set the lowpass frequency to cut off above 210 Hz</li>
+			</ul>
+			<h3>Shortcut Keys for Lowpass Resonance are <strong>R</strong>, <strong>T</strong>, and <strong>Y</strong></h3>
+			<ul>
+				<li>Press [<strong>R</strong>] to set the lowpass resonance to 2 dB</li>
+				<li>Press [<strong>T</strong>] to set the lowpass resonance to 5 dB <em class="red">(default)</em></li>
+				<li>Press [<strong>Y</strong>] to set the lowpass resonance to 8 dB</li>
+			</ul>
+			<h3>Shortcut Keys for Highpass Frequency are <strong>A</strong>, <strong>S</strong>, and <strong>D</strong></h3>
+			<ul>
+				<li>Press [<strong>A</strong>] to set the highpass frequency to cut off below 110 Hz</li>
+				<li>Press [<strong>S</strong>] to set the highpass frequency to cut off below 880 Hz <em class="red">(default)</em></li>
+				<li>Press [<strong>D</strong>] to set the highpass frequency to cut off below 1600 Hz</li>
+			</ul>
+			<h3>Shortcut Keys for Highpass Resonance are <strong>F</strong>, <strong>G</strong>, and <strong>H</strong></h3>
+			<ul>
+				<li>Press [<strong>F</strong>] to set the highpass resonance to 2 dB</li>
+				<li>Press [<strong>G</strong>] to set the highpass resonance to 5 dB <em class="red">(default)</em></li>
+				<li>Press [<strong>H</strong>] to set the highpass resonance to 8 dB</li>
+			</ul>		
+		</div>	
+		<div id="tips" class="panel">
+			<h2>Tips &amp; Tricks</h2>
+			<h3>Tuning</h3>
+			<p><span class="red">Tip:</span> Luckily the Kalimba comes pre-tuned, and is not susceptible to changes of humidity, temperature, or barometric pressure. Nor is it likely to be affected much by excessive usage, extreme carelessness, or any other kind of negligence on your part. So <strong>relax</strong>, you don't ever have to worry about making sure it's in tune.</p> 
+			<p><span class="red">Tip:</span> The Kalimba is tuned to a <strong>B minor pentatonic scale</strong>. While this does limit what can be played, it also makes it nearly impossible to play a wrong note. The B minor pentatonic scale consists of the following five notes: B, D, E, Fsharp, A. The Kalimba spans a full <strong>two octaves</strong> from B3 to B5.</p>
+			<h3>Playing</h3>		
+			<p><span class="red">Tip:</span> To play the Kalimba, <strong>hover your pointer</strong> over the tines, to "pluck" them much like a real Kalimba is played. Move slowly to hear individual notes. Try swiping quickly over multiple tines in a horizontal fashion to play chords.</p>
+			<p><span class="red">Tip:</span> The Kalimba has <strong>three alternate layouts</strong>. They can be selected by clicking on the small icons near the top. Each layout offers a different arrangement of the same notes. Each corresponds to the shape of it's icon. Depending on your preference, you can arrange the notes ascending from <strong>left to right</strong>, ascending from <strong>right to left</strong>, or ascending from the <strong>center alternating</strong> to the left and right.</p>
+			<h3>Modulation</h3>
+			<p><span class="red">Tip:</span> To get that classic Kalimba <strong>sound hole modulation effect</strong>, try this. Use your mouse to strike the tines. While they are still ringing, press [<strong>A</strong>] and [<strong>S</strong>] repeatedly.</p>
+			<p><span class="red">Tip:</span> To get a <strong>stereo phased modulation effect</strong>, try this. First strike the tines. While they are still ringing, press [<strong>4</strong>] and [<strong>6</strong>] repeatedly. For a bit more subtlety with this effect, use [<strong>4</strong>] and [<strong>5</strong>], or [<strong>5</strong>] and [<strong>6</strong>].</p>
+			<h3>Don't forget to relax, breath, smile, and have fun!</h3>		
+		</div>
+		<div id="credits">
+			<p><a href="http://middleearmedia.com/apps/virtual-kalimba/" title="Learn more about Virtual Kalimba">Virtual Kalimba</a> is a Web Audio experiment by <a href="http://middleearmedia.com/" title="Middle Ear Media">Middle Ear Media</a>.</p>
+			<p class="small-text"><span class="red">* </span>Keep in mind you need Chrome or Safari 6 for this to work!</p>
+		</div>
+		</div>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js" charset="utf-8"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+		<script src="kalimba.js"></script>
+		<script type="text/javascript">
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-6856016-46']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script> 
+	</body>
+</html>
