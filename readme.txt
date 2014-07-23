@@ -1,7 +1,7 @@
 === Virtual Kalimba - A Web Audio experiment by Middle Ear Media. ===
 
 Author: Obadiah Metivier
-Author URI: http://middleearmedia.com/
+Author URI: http://middleearmedia.com/kalimba/
 Tags: web audio api, kalimba, virtual kalimba, mbira, thumb piano, middle ear media, obadiah metivier
 Stable tag: 1.6
 
