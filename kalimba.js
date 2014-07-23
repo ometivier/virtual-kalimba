@@ -3,7 +3,7 @@
  * Author: Obadiah Metivier
  * Author URI: http://middleearmedia.com/
  * Description: Virtual Instrument based on Kalimba.
- * Version: 1.5
+ * Version: 1.6
  */
 
 // Create variables for B minor Pentatonic Kalimba and assign audio files to them  
@@ -24,15 +24,16 @@ var b_tine13 = new audioAlternatingKey("a_tine13","assets/sounds/kalimba/m_kalim
 var b_tine14 = new audioAlternatingKey("a_tine14","assets/sounds/kalimba/n_kalimba_a5.wav");
 var b_tine15 = new audioAlternatingKey("a_tine15","assets/sounds/kalimba/o_kalimba_b5.wav");
 var b_tine16 = new audioAlternatingKey("a_tine16","assets/sounds/kalimba/p_kalimba_c6.wav");
-  
-var context = new webkitAudioContext(); // Create Audio Container  
-    sourceGainNode = context.createGainNode(); // Create source gain control
-    lowPassFilter = context.createBiquadFilter(); // Create low pass filter
-    highPassFilter = context.createBiquadFilter(); // Create high pass filter
-	compressorPost = context.createDynamicsCompressor(); // Create post filter compressor
-    masterGainNode = context.createGainNode(); // Create master gain control
-	pannerNode = context.createPanner(); // Create panner
-	 
+
+var context; // Create Smart Audio Container
+if (typeof AudioContext !== "undefined") {
+    context = new AudioContext();
+} else if (typeof webkitAudioContext !== "undefined") {
+    context = new webkitAudioContext();
+} else {
+    throw new Error('AudioContext not supported. :(');
+}
+
  function audioAlternatingKey(domNode,fileDirectory) {
     this.domNode = domNode;
     this.fileDirectory = fileDirectory;
@@ -44,7 +45,7 @@ var context = new webkitAudioContext(); // Create Audio Container
        var source = context.createBufferSource();
        source.buffer = savedBuffer;
        source.connect(sourceGainNode);
-       source.noteOn(0); // Play sound immediately
+       source.start(0); // Play sound immediately. Renamed source.start from source.noteOn
        };
     var xhr = new XMLHttpRequest();
     xhr.open('get',fileDirectory, true);
@@ -62,13 +63,22 @@ var context = new webkitAudioContext(); // Create Audio Container
    };
  xhr.send();
  };
- 	
+
+    sourceGainNode = context.createGain(); // Create source gain control. Renamed createGain from createGainNode
+    lowPassFilter = context.createBiquadFilter(); // Create low pass filter
+    highPassFilter = context.createBiquadFilter(); // Create high pass filter
+	compressorPost = context.createDynamicsCompressor(); // Create post filter compressor
+    masterGainNode = context.createGain(); // Create master gain control. Renamed createGain from createGainNode
+	pannerNode = context.createPanner(); // Create panner
+	
+	
+ 
 // sourceGainNode settings
 sourceGainNode.connect(lowPassFilter);
 sourceGainNode.connect(highPassFilter);
  	
 // lowPassFilter settings
-lowPassFilter.type = 0; // (Low-pass)
+lowPassFilter.type = "lowpass"; // (Low-pass) Value renamed "lowpass" from 0
 lowPassFilter.frequency.value = 110; // Cut off frequencies above 110 Hz
 document.getElementById('filter-1').addEventListener('change', function() {
     lowPassFilter.frequency.value = this.value;
@@ -80,7 +90,7 @@ document.getElementById('quality-1').addEventListener('change', function() {
 lowPassFilter.connect(compressorPost);
 
 // highPassFilter settings
-highPassFilter.type = 1; // (High-pass)
+highPassFilter.type = "highpass"; // (High-pass) Value renamed "highpass" from 1
 highPassFilter.frequency.value = 880; // Cut off frequencies below 880 Hz
 document.getElementById('filter-2').addEventListener('change', function() {
     highPassFilter.frequency.value = this.value;
@@ -152,7 +162,7 @@ var a_tine16 = new audioAscendingKey("b_tine16","assets/sounds/kalimba/p_kalimba
        var source = context.createBufferSource();
        source.buffer = savedBuffer;
        source.connect(sourceGainNode);
-       source.noteOn(0); // Play sound immediately
+       source.start(0); // Play sound immediately. Renamed from source.noteOn
        };
     var xhr = new XMLHttpRequest();
     xhr.open('get',fileDirectory, true);
@@ -198,7 +208,7 @@ var a_tine16 = new audioDescendingKey("c_tine16","assets/sounds/kalimba/p_kalimb
        var source = context.createBufferSource();
        source.buffer = savedBuffer;
        source.connect(sourceGainNode);
-       source.noteOn(0); // Play sound immediately
+       source.start(0); // Play sound immediately. Renamed from source.noteOn
        };
     var xhr = new XMLHttpRequest();
     xhr.open('get',fileDirectory, true);

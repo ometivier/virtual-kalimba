@@ -2,7 +2,7 @@
  * Name: Kalimba
  * Description: A Web Audio experiment by Middle Ear Media.
  * Author: Obadiah Metivier
- * Version: 1.5
+ * Version: 1.6
 */
 
 /* Typography */
@@ -21,7 +21,7 @@ h1 {
     font-family: 'FFFTusjBold',Arial,sans-serif;
     font-size: 3.5rem;
     line-height: 0.5;
-  margin: 20px auto;
+	margin: 20px auto;
 	text-transform: uppercase;
 	width: 570px;
 }
